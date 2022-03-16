@@ -1,21 +1,25 @@
 <template>
-  <div id="app">
-    <StyledH1>test</StyledH1>
-  </div>
+  <main>
+    <AppHeader />
+  </main>
 </template>
 
 <script>
-  import { StyledH1 } from './styles/micro/micro.styles'
+  import AppHeader from './components/AppHeader.vue'
 
   export default {
     name: 'App',
     components: {
-      StyledH1
+      AppHeader
     }
   }
 </script>
 
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap');
+<style lang="scss">
+  @import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;500;600&display=swap');
 
+  main {
+    height: 100vh;
+  }
 </style>
+ 
