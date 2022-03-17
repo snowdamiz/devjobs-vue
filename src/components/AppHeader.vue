@@ -38,7 +38,6 @@
 
       @media only screen and (min-width: $desktop) {
         width: 1110px;
-        /* border: 1px solid red; */
       }
 
       h1 {
