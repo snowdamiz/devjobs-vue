@@ -28,7 +28,7 @@
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     background-color: $lightGray;
   }
 </style>
