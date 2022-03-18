@@ -23,12 +23,10 @@
   @import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;500;600&display=swap');
 
   main {
-    width: 100%;
     height: 100vh;
     display: flex;
     flex-flow: column nowrap;
-    justify-content: center;
-    /* align-items: center; */
+    align-items: center;
     background-color: $lightGray;
   }
 </style>

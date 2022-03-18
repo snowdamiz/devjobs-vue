@@ -1,86 +1,202 @@
 <template>
-  <nav>
-    <div class="inner">
-      <input type="input" placeholder="Filter by title..."/>
+    <nav>
+      <div class="inputs">
+        <div class="searchContainer">
+          <img v-if="window.width > 768" src="@/assets/desktop/icon-search.svg" />
+          <input type="input" placeholder="Filter by title..."/>
+        </div>
+        <div v-if="window.width > 768" class="locationFilterContainer">
+          <img v-if="window.width > 768" src="@/assets/desktop/icon-location.svg" />
+          <input type="input" placeholder="Filter by location..."/>
+        </div>
+      </div>
       <div class="buttonsContainer">
         <button class="button filterButton">
-          <img src="@/assets/mobile/icon-filter.svg" />
+          <img v-if="window.width < 768" src="@/assets/mobile/icon-filter.svg" />
+          <div v-else class="fullTimeFilterContainer">
+            <div class="radioButton">
+            </div>
+            <label>Full Time</label>
+          </div>
         </button>
         <button class="button searchButton">
-          <img src="@/assets/mobile/icon-search.svg" />
+          <img v-if="window.width < 768" src="@/assets/mobile/icon-search.svg" />
+          <label v-else>Search</label>
         </button>
       </div>
-    </div>
-  </nav>
+    </nav>
 </template>
 
 <script>
   export default {
     name: 'AppNav',
+    data() {
+      return {
+        window: {
+          width: 0,
+          height: 0,
+        },
+      }
+    },
+    created() {
+      window.addEventListener('resize', this.handleResize)
+      this.handleResize();
+    },
+    destroyed() {
+      window.removeEventListener('resize', this.handleResize)
+    },
+    methods: {
+      handleResize() {
+        this.window.width = window.innerWidth;
+        this.window.height = window.innerHeight;
+      },
+    },
   }
 </script>
 
 <style lang="scss">
   @import '@/styles/_variables.scss';
-  
+
   nav {
-    width: 100%;
+    width: calc(100% - $navPadding * 2);
+    border-radius: $borderRadius;
+    background-color: $white;
     height: 80px;
     margin-top: -40px;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
 
-    .inner {
-      width: calc(100% - $navPadding * 2);
-      border-radius: $borderRadius;
-      background-color: $white;
-      height: 100%;
+    @media only screen and (min-width: $desktop) {
+      width: 1100px;
+    }
+
+    input {
+      height: 48px;
+      font-size: 16px;
+      font-family: $primaryFont;
+      color: $searchBarGray;
+      border: none;
+      padding-left: 8px;
+      width: 100%;
+      outline: none;
+    }
+
+    .inputs {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 0 16px;
+      width: 100%;
+      height: 100%;
 
-      @media only screen and (min-width: $desktop) {
-        width: 1100px;
-      }
-
-      input {
-        height: 48px;
-        font-size: 16px;
-        font-family: $primaryFont;
-        color: $searchBarGray;
-        border: none;
-        padding-left: 8px;
-        min-width: 100px;
-      }
-
-      .buttonsContainer {
+      .searchContainer {
         display: flex;
-        justify-content: space-between;
+        align-items: center;
+        gap: 6px;
+        border-right: 1px solid $shadow;
+        height: 100%;
+        width: 100%;
+        margin-left: 10px;
 
-        .button {
-          width: 48px;
-          height: 48px;
-          border-radius: $borderRadius;
+        @media only screen and (min-width: $tablet) {
+          width: 50%;
+          margin: 0;
+        }
+
+        img {
+          width: 20px;
+          height: 20px;
+          padding-left: 18px;
+        }
+      }
+
+      .locationFilterContainer {
+        border-right: 1px solid $shadow;
+        display: flex;
+        align-items: center;
+        height: 100%;
+
+        @media only screen and (min-width: $tablet) {
+          width: 50%;
+        }
+
+        img {
+          width: 16px;
+          height: 20px;
+          padding-left: 18px;
+          padding-right: 8px;
+        }
+      }
+    }
+
+    .buttonsContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      gap: 12px;
+      margin-right: 16px;
+
+      @media only screen and (min-width: $tablet) {
+        min-width: 250px;
+        margin: 0;
+      }
+
+      .button {
+        width: 48px;
+        height: 48px;
+        border-radius: $borderRadius;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        cursor: pointer;
+
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      .searchButton {
+        background: $violet;
+
+        @media only screen and (min-width: $tablet) {
+          width: auto;
+          padding: 0 18px;
+        }
+
+        label {
+          font-family: $primaryFont;
+          color: $white;
+          font-weight: 600;
+        }
+      }
+
+      .filterButton {
+        background: none;
+
+        @media only screen and (min-width: $tablet) {
+          width: auto;
+        }
+
+        .fullTimeFilterContainer {
           display: flex;
           align-items: center;
-          justify-content: center;
-          border: none;
-          cursor: pointer;
-  
-          img {
-            width: 20px;
-            height: 20px;
+          justify-content: space-between;
+          gap: 10px;
+
+          .radioButton {
+            width: 24px;
+            height: 24px;
+            border-radius: $smallBorderRadius;
+            background-color: $shadow;
           }
-        }
-  
-        .searchButton {
-          background: $violet;
-        }
-  
-        .filterButton {
-          margin-right: 10px;
-          background: none;
+
+          label {
+            font-family: $primaryFont;
+            font-weight: 600;
+            font-size: 16px;
+          }
         }
       }
     }
