@@ -91,6 +91,7 @@
         display: flex;
         flex-flow: column nowrap;
         align-items: flex-start;
+        width: 100%;
   
         .job-logo {
           width: 50px;
@@ -128,7 +129,6 @@
           font-weight: 300;
           color: $darkGray;
           font-size: 16px;
-          /* line-height: 0; */
           margin-top: 0;
         }
   
@@ -136,7 +136,6 @@
           color: $violet;
           font-size: 14px;
           margin-top: 50px;
-          /* line-height: 0; */
           margin-top: 25px;
         }
       }
