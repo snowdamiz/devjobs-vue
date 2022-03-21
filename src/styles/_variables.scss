@@ -1,18 +1,18 @@
 // COLORS
-$violet: #5964E0;
-$lightViolet: #939BF4;
-$veryDarkblue: #19292D;
+$violet: #5964e0;
+$lightViolet: #939bf4;
+$veryDarkblue: #19292d;
 $midnight: #121721;
-$white: #FFFFFF;
-$lightGray: #F4F6F8;
-$gray: #9DAEC2;
-$darkGray: #6E8090;
-$shadow: #D7D7D7;
-$searchBarGray: #19202D;
+$white: #ffffff;
+$lightGray: #f4f6f8;
+$gray: #9daec2;
+$darkGray: #6e8090;
+$shadow: #d7d7d7;
+$searchBarGray: #19202d;
 $radioButtonGray: #979797;
 
 // FONTS
-$primaryFont: 'Kumbh Sans', sans-serif;
+$primaryFont: "Kumbh Sans", sans-serif;
 
 // MEDIA QUERIES
 $tablet: 768px;
@@ -20,5 +20,6 @@ $desktop: 1200px;
 
 // LAYOUT
 $navPadding: 40px;
-$borderRadius: 6px;
 $smallBorderRadius: 3px;
+$borderRadius: 6px;
+$largeBorderRadius: 15px;

@@ -1,29 +1,27 @@
 <template>
   <main>
     <AppHeader />
-    <AppNav />
     <router-view />
   </main>
 </template>
 
 <script>
   import AppHeader from '@/components/AppHeader.vue'
-  import AppNav from '@/components/AppNav.vue'
 
   export default {
     components: {
       AppHeader,
-      AppNav,
     },
   }
 </script>
 
 <style lang="scss">
   @import '@/styles/_variables.scss';
-  @import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;500;600;700&display=swap');
 
   main {
-    height: 100vh;
+    font-family: $primaryFont;
+    min-height: 100vh;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;

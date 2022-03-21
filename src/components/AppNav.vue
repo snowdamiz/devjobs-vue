@@ -37,7 +37,8 @@
   @import '@/styles/_variables.scss';
 
   nav {
-    width: calc(100% - $navPadding * 2);
+    width: 100%;
+    /* width: calc(100% - $navPadding * 2); */
     border-radius: $borderRadius;
     background-color: $white;
     height: 80px;
@@ -53,7 +54,6 @@
     input {
       height: 48px;
       font-size: 16px;
-      font-family: $primaryFont;
       color: $searchBarGray;
       border: none;
       padding-left: 8px;
@@ -155,7 +155,6 @@
         }
 
         label {
-          font-family: $primaryFont;
           color: $white;
           font-weight: 600;
           display: none;
@@ -192,7 +191,6 @@
           }
 
           label {
-            font-family: $primaryFont;
             font-weight: 600;
             font-size: 16px;
           }
