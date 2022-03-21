@@ -11,6 +11,7 @@
         </div>
         <div class="job-card-labels">
           <span class="job-card-label-text">{{ job.postedAt }}</span>
+          <span class="divider">.</span>
           <span class="job-card-label-text">{{ job.contract }}</span>
         </div>
         <h1>{{ job.position }}</h1>
@@ -85,11 +86,6 @@
         margin-top: 55px;
         border-radius: $borderRadius;
         padding: 15px 30px;
-
-        @media only screen and (min-width: $tablet) {
-          /* width: calc(100% - $navPadding * 2); */
-          /* margin-top: 40; */
-        }
   
         .job-logo {
           width: 50px;
@@ -108,6 +104,12 @@
           padding-top: 15px;
   
           .job-card-label-text {
+            color: $darkGray;
+          }
+
+          .divider {
+            font-size: 30px;
+            line-height: 3px;
             color: $darkGray;
           }
         }
