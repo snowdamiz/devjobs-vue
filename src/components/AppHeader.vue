@@ -1,7 +1,9 @@
 <template>
   <header>
     <div class="logo">
-      <h1>devjobs</h1>
+      <router-link to="/" class="link">
+        <h1>devjobs</h1>
+      </router-link>
     </div>
   </header>
 </template>
@@ -40,12 +42,18 @@
         width: 1110px;
       }
 
+      a {
+        text-decoration: none;
+      }
+
       h1 {
         margin: 0;
         font-family: $primaryFont;
         color: $white;
         font-size: 36px;
         padding: 25px 0 0 20px;
+        text-decoration: none;
+        cursor: pointer;
 
         @media only screen and (min-width: $tablet) and (max-width: $desktop) {
           padding: 40px 0 0 50px;
@@ -54,6 +62,10 @@
 
         @media only screen and (min-width: $desktop) {
           padding: 40px 0 0 0;
+        }
+
+        .link {
+          text-decoration: none;
         }
       }
     }

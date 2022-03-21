@@ -2,19 +2,38 @@
   <main>
     <AppHeader />
     <AppNav />
+    <!-- <h1>{{ jobs[0].id }}</h1> -->
+    <router-view />
   </main>
 </template>
 
 <script>
-  import AppHeader from './components/AppHeader.vue'
-  import AppNav from './components/AppNav.vue'
+  import Axios from 'axios'
+  import AppHeader from '@/components/AppHeader.vue'
+  import AppNav from '@/components/AppNav.vue'
 
   export default {
-    name: 'App',
     components: {
       AppHeader,
       AppNav,
-    }
+    },
+    data() {
+      return {
+        jobs: []
+      }
+    },
+    methods: {
+      async getJobs() {
+        try {
+          const res = await Axios.get('./data.json')
+          if (res.status === 200) this.jobs = res.data
+          else console.error('Error fetching jobs')
+        } catch (err) { console.error(err) }
+      },
+    },
+    created() {
+      this.getJobs()
+    },
   }
 </script>
 
