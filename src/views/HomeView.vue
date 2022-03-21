@@ -2,7 +2,7 @@
   <div class="content">
     <AppNav />
     <div class="jobs-container">
-      <div v-for="(job, i) in jobs" v-bind:key="i" class="job-card">
+      <button v-for="(job, i) in jobs" v-bind:key="i" class="job-card">
         <div class="job-logo" v-bind:style="{backgroundColor: job.logoBackground}" >
           <img 
             :src="job.logo"
@@ -17,7 +17,7 @@
         <h1>{{ job.position }}</h1>
         <h3>{{ job.company }}</h3>
         <h4>{{ job.location }}</h4>
-      </div>
+      </button>
     </div>
   </div>
 </template>
@@ -86,6 +86,11 @@
         margin-top: 55px;
         border-radius: $borderRadius;
         padding: 15px 30px;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: flex-start;
   
         .job-logo {
           width: 50px;
@@ -101,7 +106,7 @@
         .job-card-labels {
           display: flex;
           gap: 10px;
-          padding-top: 15px;
+          padding-top: 20px;
   
           .job-card-label-text {
             color: $darkGray;
@@ -123,13 +128,16 @@
           font-weight: 300;
           color: $darkGray;
           font-size: 16px;
-          line-height: 12px;
+          /* line-height: 0; */
+          margin-top: 0;
         }
   
         h4 {
           color: $violet;
           font-size: 14px;
           margin-top: 50px;
+          /* line-height: 0; */
+          margin-top: 25px;
         }
       }
     }
