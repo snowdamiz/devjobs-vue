@@ -2,26 +2,26 @@
     <nav>
       <div class="inputs">
         <div class="searchContainer">
-          <img v-if="window.width > 768" src="@/assets/desktop/icon-search.svg" />
+          <img src="@/assets/desktop/icon-search.svg" />
           <input type="input" placeholder="Filter by title..."/>
         </div>
-        <div v-if="window.width > 768" class="locationFilterContainer">
-          <img v-if="window.width > 768" src="@/assets/desktop/icon-location.svg" />
+        <div class="locationFilterContainer">
+          <img src="@/assets/desktop/icon-location.svg" />
           <input type="input" placeholder="Filter by location..."/>
         </div>
       </div>
       <div class="buttonsContainer">
         <button class="button filterButton">
-          <img v-if="window.width < 768" src="@/assets/mobile/icon-filter.svg" />
-          <div v-else class="fullTimeFilterContainer">
+          <img src="@/assets/mobile/icon-filter.svg" />
+          <div class="fullTimeFilterContainer">
             <div class="radioButton">
             </div>
             <label>Full Time</label>
           </div>
         </button>
         <button class="button searchButton">
-          <img v-if="window.width < 768" src="@/assets/mobile/icon-search.svg" />
-          <label v-else>Search</label>
+          <img src="@/assets/mobile/icon-search.svg" />
+          <label>Search</label>
         </button>
       </div>
     </nav>
@@ -106,17 +106,23 @@
           width: 20px;
           height: 20px;
           padding-left: 18px;
+          display: none;
+
+          @media only screen and (min-width: $tablet) {
+            display: block;
+          }
         }
       }
 
       .locationFilterContainer {
         border-right: 1px solid $shadow;
-        display: flex;
         align-items: center;
         height: 100%;
+        display: none;
 
         @media only screen and (min-width: $tablet) {
           width: 50%;
+          display: flex;
         }
 
         img {
@@ -154,6 +160,10 @@
         img {
           width: 20px;
           height: 20px;
+
+          @media only screen and (min-width: $tablet) {
+            display: none;
+          }
         }
       }
 
@@ -169,6 +179,11 @@
           font-family: $primaryFont;
           color: $white;
           font-weight: 600;
+          display: none;
+
+          @media only screen and (min-width: $tablet) {
+            display: block;
+          }
         }
       }
 
@@ -177,13 +192,18 @@
 
         @media only screen and (min-width: $tablet) {
           width: auto;
+          /* display: none; */
         }
 
         .fullTimeFilterContainer {
-          display: flex;
           align-items: center;
           justify-content: space-between;
           gap: 10px;
+          display: none;
+
+          @media only screen and (min-width: $tablet) {
+            display: flex;
+          }
 
           .radioButton {
             width: 24px;
