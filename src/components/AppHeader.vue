@@ -33,6 +33,7 @@
       background-image: url('@/assets/desktop/bg-pattern-header.svg');
       display: flex;
       justify-content: center;
+      background-size: 100% 100%;
     }
 
     .logo {

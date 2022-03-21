@@ -44,9 +44,6 @@
           else console.log(['Error fetching jobs', res])
         } catch (err) { console.log(err) }
       },
-      setFilterView(bool) {
-        this.filterView = bool
-      },
     },
     created() {
       this.getJobs()
@@ -63,15 +60,36 @@
     flex-flow: column nowrap;
     align-items: center;
 
+    @media only screen and (min-width: $desktop) {
+      width: 1100px;
+    }
+
     .jobs-container {
       width: 100%;
       margin-bottom: 40px;
+
+      @media only screen and (min-width: $tablet) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+        flex-flow: row wrap;
+        justify-content: space-between;
+      }
+
+      @media only screen and (min-width: $desktop) {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
   
       .job-card {
         background-color: $white;
         margin-top: 55px;
         border-radius: $borderRadius;
         padding: 15px 30px;
+
+        @media only screen and (min-width: $tablet) {
+          /* width: calc(100% - $navPadding * 2); */
+          /* margin-top: 40; */
+        }
   
         .job-logo {
           width: 50px;
