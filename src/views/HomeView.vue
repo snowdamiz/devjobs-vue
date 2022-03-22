@@ -40,7 +40,7 @@
     methods: {
       async getJobs() {
         try {
-          const res = await Axios.get('./data.json')
+          const res = await Axios.get('http://localhost:3000/api/jobs')
           if (res.status === 200) this.jobs = res.data
           else console.log(['Error fetching jobs', res])
         } catch (err) { console.log(err) }
