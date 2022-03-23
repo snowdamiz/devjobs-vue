@@ -2,7 +2,7 @@
   <div class="content">
     <AppNav />
     <div class="jobs-container">
-      <button v-for="(job, i) in jobs" v-bind:key="i" class="job-card">
+      <button v-for="job in allJobs" v-bind:key="job.id" class="job-card">
         <div class="job-logo" v-bind:style="{backgroundColor: job.logoBackground}" >
           <img 
             :src="job.logo"
@@ -23,32 +23,23 @@
 </template>
 
 <script>
-  import Axios from 'axios'
   import AppNav from '@/components/AppNav.vue'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
     name: "HomeView",
     components: {
       AppNav,
     },
-    data() {
-      return {
-        jobs: [],
-        // filterView: false,
-      }
-    },
     methods: {
-      async getJobs() {
-        try {
-          const res = await Axios.get('http://localhost:3000/api/jobs')
-          if (res.status === 200) this.jobs = res.data
-          else console.log(['Error fetching jobs', res])
-        } catch (err) { console.log(err) }
-      },
+      ...mapActions([
+        'getAllJobs',
+      ]),
     },
+    computed: mapGetters(['allJobs']),
     created() {
-      this.getJobs()
-    },
+      this.getAllJobs()
+    }
   }
 </script>
 

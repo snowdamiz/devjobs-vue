@@ -1,13 +1,15 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from '@/router'
-// import store from '@/store'
-import '@/styles/reset.css'
+import router from './router/index'
+import store from './store/index'
+import './styles/reset.css'
 
 Vue.config.productionTip = false
 
-new Vue({
+const stores = new Vue({
   router,
-  // store,
+  store,
   render: h => h(App),
 }).$mount('#app')
+
+export default stores

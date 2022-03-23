@@ -12,7 +12,7 @@
       </div>
       <div class="buttonsContainer">
         <button class="button filterButton">
-          <img src="@/assets/mobile/icon-filter.svg" />
+          <img src="@/assets/mobile/icon-filter.svg" @click="toggleFilter()" />
           <div class="fullTimeFilterContainer">
             <div class="radioButton">
             </div>
@@ -28,8 +28,15 @@
 </template>
 
 <script>
+  import { mapGetters, mapMutations } from 'vuex'
   export default {
     name: 'AppNav',
+    computed: mapGetters(['filterState']),
+    methods: {
+      ...mapMutations([
+        'toggleFilter',
+      ]),
+    }
   }
 </script>
 
@@ -38,7 +45,6 @@
 
   nav {
     width: 100%;
-    /* width: calc(100% - $navPadding * 2); */
     border-radius: $borderRadius;
     background-color: $white;
     height: 80px;
