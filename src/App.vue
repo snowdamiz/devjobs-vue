@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div v-if="this.filterState" class="filter-overlay" @click="toggleFilter()">
+    <div v-if="this.filterState" class="filter-overlay">
       <div class="filter-overlay-container">
         <div class="section top">
           <img src="@/assets/desktop/icon-location.svg" alt="location filter image" />
@@ -12,7 +12,7 @@
             </div>
             <label>Full Time</label>
           </div>
-          <button>Search</button>
+          <button @click="toggleFilter()" >Search</button>
         </div>
       </div>
     </div>
@@ -61,7 +61,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      cursor: pointer;
 
       .filter-overlay-container {
         width: calc(100% - $navPadding * 2);
