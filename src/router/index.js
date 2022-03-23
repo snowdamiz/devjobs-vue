@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
+import JobView from '@/views/JobView.vue'
 
 Vue.use(VueRouter)
 
@@ -9,7 +10,11 @@ const routes = [
     path: '/',
     name: 'HomeView',
     component: HomeView,
-    props: true
+  },
+  {
+    path: '/job/:id',
+    name: 'JobView',
+    component: JobView,
   }
 ]
 

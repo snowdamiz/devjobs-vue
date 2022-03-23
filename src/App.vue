@@ -3,12 +3,23 @@
     <div v-if="this.filterState" class="filter-overlay">
       <div class="filter-overlay-container">
         <div class="section top">
-          <img src="@/assets/desktop/icon-location.svg" alt="location filter image" />
+          <img src="@/assets/desktop/icon-location.svg" alt="location filter icon" />
           <input placeholder="Filter by location..." />
         </div>
         <div class="section bottom">
-          <div class="fullTimeFilterContainer">
-            <div class="radioButton">
+          <div 
+            @click="toggleFulltimeFilter()"
+            class="fullTimeFilterContainer"
+          >
+            <div
+              :style="fulltimeFilter ? { backgroundColor: '#5964e0' } : { backgroundColor: '#d7d7d7' }"
+              class="radioButton"
+            >
+              <img 
+                v-if="this.fulltimeFilter"
+                src="@/assets/desktop/icon-check.svg" 
+                alt="full time filter icon"
+              />
             </div>
             <label>Full Time</label>
           </div>
@@ -29,10 +40,14 @@
     components: {
       AppHeader,
     },
-    computed: mapGetters(['filterState']),
+    computed: mapGetters([
+      'filterState',
+      'fulltimeFilter'
+    ]),
     methods: {
       ...mapMutations([
         'toggleFilter',
+        'toggleFulltimeFilter',
       ]),
     }
   }
@@ -99,12 +114,16 @@
             justify-content: space-between;
             gap: 15px;
             display: flex;
+            cursor: pointer;
 
             .radioButton {
               width: 24px;
               height: 24px;
               border-radius: $smallBorderRadius;
               background-color: $shadow;
+              display: flex;
+              justify-content: center;
+              align-items: center;
             }
 
             label {

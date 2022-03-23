@@ -2,21 +2,27 @@
   <div class="content">
     <AppNav />
     <div class="jobs-container">
-      <button v-for="job in allJobs" v-bind:key="job.id" class="job-card">
-        <div class="job-logo" v-bind:style="{backgroundColor: job.logoBackground}" >
-          <img 
-            :src="job.logo"
-            alt="job logo" 
-          />
-        </div>
-        <div class="job-card-labels">
-          <span class="job-card-label-text">{{ job.postedAt }}</span>
-          <span class="divider">.</span>
-          <span class="job-card-label-text">{{ job.contract }}</span>
-        </div>
-        <h1>{{ job.position }}</h1>
-        <h3>{{ job.company }}</h3>
-        <h4>{{ job.location }}</h4>
+      <button 
+        v-for="job in allJobs" 
+        v-bind:key="job.id"
+        class="job-card"
+      >
+        <router-link :to="`/job/${job.id}`" class="link">
+          <div class="job-logo" v-bind:style="{backgroundColor: job.logoBackground}" >
+            <img 
+              :src="job.logo"
+              alt="job logo" 
+            />
+          </div>
+          <div class="job-card-labels">
+            <span class="job-card-label-text">{{ job.postedAt }}</span>
+            <span class="divider">.</span>
+            <span class="job-card-label-text">{{ job.contract }}</span>
+          </div>
+          <h1>{{ job.position }}</h1>
+          <h3>{{ job.company }}</h3>
+          <h4>{{ job.location }}</h4>
+        </router-link>
       </button>
     </div>
   </div>
@@ -83,6 +89,13 @@
         flex-flow: column nowrap;
         align-items: flex-start;
         width: 100%;
+
+        .link {
+          text-decoration: none;
+          flex-flow: column nowrap;
+          align-items: flex-start;
+          display: flex;
+        }
   
         .job-logo {
           width: 50px;
@@ -97,6 +110,7 @@
   
         .job-card-labels {
           display: flex;
+          align-items: flex-start;
           gap: 10px;
           padding-top: 20px;
   

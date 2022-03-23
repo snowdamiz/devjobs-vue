@@ -4,13 +4,21 @@ const URL = 'http://localhost:3000/api/jobs'
 const state = {
   jobs: [],
   selectedJob: {},
-  filterState: true,
+  filterState: false,
+  fulltimeFilter: false,
+  search: {
+    position: '',
+    location: '',
+  }
 }
 
 // brings state into components
 const getters = {
   allJobs: state => state.jobs,
+  selectedJob: state => id => state.jobs.find(job => job.id === id),
   filterState: state => state.filterState,
+  fulltimeFilter: state => state.fulltimeFilter,
+  search: state => state.search,
 } 
 
 const actions = {
@@ -26,7 +34,10 @@ const actions = {
 // adding to state
 const mutations= {
   setAllJobs: (state, jobs) => (state.jobs = jobs),
-  toggleFilter: (state) => (state.filterState = !state.filterState)
+  toggleFilter: (state) => (state.filterState = !state.filterState),
+  toggleFulltimeFilter: (state) => (state.fulltimeFilter = !state.fulltimeFilter),
+  setSearchPosition: (state, position) => (state.search.position = position),
+  setSearchLocation: (state, location) => (state.search.location = location),
 }
 
 export default {

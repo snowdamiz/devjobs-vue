@@ -3,23 +3,42 @@
       <div class="inputs">
         <div class="searchContainer">
           <img src="@/assets/desktop/icon-search.svg" />
-          <input type="input" placeholder="Filter by title..."/>
+          <input
+            type="input"
+            placeholder="Filter by title..."
+            v-model="searchPosition"
+          />
         </div>
         <div class="locationFilterContainer">
           <img src="@/assets/desktop/icon-location.svg" />
-          <input type="input" placeholder="Filter by location..."/>
+          <input
+            type="input"
+            placeholder="Filter by location..."
+            v-model="searchLocation"
+          />
         </div>
       </div>
       <div class="buttonsContainer">
         <button class="button filterButton">
           <img src="@/assets/mobile/icon-filter.svg" @click="toggleFilter()" />
-          <div class="fullTimeFilterContainer">
-            <div class="radioButton">
+          <div class="fullTimeFilterContainer" @click="toggleFulltimeFilter()">
+            <div
+              :style="fulltimeFilter ? { backgroundColor: '#5964e0' } : { backgroundColor: '#d7d7d7' }"
+              class="radioButton"
+            >
+              <img 
+                v-if="this.fulltimeFilter"
+                src="@/assets/desktop/icon-check.svg" 
+                alt="full time filter icon"
+              />
             </div>
             <label>Full Time</label>
           </div>
         </button>
-        <button class="button searchButton">
+        <button
+          @click="searchJobs()"
+          class="button searchButton"
+        >
           <img src="@/assets/mobile/icon-search.svg" />
           <label>Search</label>
         </button>
@@ -28,14 +47,55 @@
 </template>
 
 <script>
-  import { mapGetters, mapMutations } from 'vuex'
+  import { mapActions, mapGetters, mapMutations } from 'vuex'
+  import Fuse from 'fuse.js'
+
   export default {
     name: 'AppNav',
-    computed: mapGetters(['filterState']),
+    data() {
+      return {
+        searchPosition: '',
+        searchLocation: '',
+      }
+    },
+    computed: mapGetters([
+      'filterState',
+      'fulltimeFilter',
+      'search',
+      'allJobs',
+    ]),
     methods: {
       ...mapMutations([
         'toggleFilter',
+        'toggleFulltimeFilter',
+        'setSearchPosition',
+        'setSearchLocation',
+        'setAllJobs',
       ]),
+      ...mapActions([
+        'getAllJobs',
+      ]),
+      searchJobs() {
+
+        // Set search object
+        this.setSearchPosition(this.searchPosition)
+        this.setSearchLocation(this.searchLocation)
+
+        // Fuse searches
+        const fusePosition = new Fuse(this.allJobs, { keys: ['position'] })
+        const fuseLocation = new Fuse(this.allJobs, { keys: ['location'] })
+
+        // Determine fields, search, combine results
+        const positionResult = this.search.position?.length ? fusePosition.search(this.search.position) : []
+        const locationResult = this.search.location?.length ? fuseLocation.search(this.search.location) : []
+        const results = [...positionResult, ...locationResult]
+
+        // Set results to allJobs
+        this.setAllJobs(results.map(job => job.item))
+      },
+    },
+    created() {
+      this.getAllJobs()
     }
   }
 </script>
@@ -182,8 +242,9 @@
         .fullTimeFilterContainer {
           align-items: center;
           justify-content: space-between;
-          gap: 10px;
+          gap: 15px;
           display: none;
+          cursor: pointer;
 
           @media only screen and (min-width: $tablet) {
             display: flex;
@@ -194,6 +255,9 @@
             height: 24px;
             border-radius: $smallBorderRadius;
             background-color: $shadow;
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
 
           label {
