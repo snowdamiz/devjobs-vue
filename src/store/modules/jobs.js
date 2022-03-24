@@ -32,7 +32,7 @@ const actions = {
 }
 
 // adding to state
-const mutations= {
+const mutations = {
   setAllJobs: (state, jobs) => (state.jobs = jobs),
   toggleFilter: (state) => (state.filterState = !state.filterState),
   toggleFulltimeFilter: (state) => (state.fulltimeFilter = !state.fulltimeFilter),
