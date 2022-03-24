@@ -3,7 +3,10 @@
     <div v-if="this.filterState" class="filter-overlay">
       <div class="filter-overlay-container">
         <div class="section top">
-          <img src="@/assets/desktop/icon-location.svg" alt="location filter icon" />
+          <img 
+            src="@/assets/desktop/icon-location.svg" 
+            alt="location filter icon" 
+          />
           <input placeholder="Filter by location..." />
         </div>
         <div class="section bottom">
